@@ -1,0 +1,109 @@
+// lib/features/profile/profile_screen.dart
+
+import 'package:flutter/material.dart';
+import '../../shared/widgets/top_app_bar_widget.dart';
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      appBar: TopAppBarWidget(title: 'Profile'),
+      body: _ProfileBody(),
+    );
+  }
+}
+
+class _ProfileBody extends StatelessWidget {
+  const _ProfileBody();
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          // Header
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 32, 16, 16),
+            child: Column(
+              children: [
+                // Foto profil
+                CircleAvatar(
+                  radius: 55,
+                  backgroundColor: colorScheme.primary,
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/images/profile.png',
+                      width: 110,
+                      height: 110,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Icon(
+                        Icons.person,
+                        size: 60,
+                        color: colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 16),
+
+                // Nama — UBAH DENGAN NAMA KAMU
+                Text(
+                  'Nama Kamu',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                const SizedBox(height: 4),
+
+                // Username — UBAH DENGAN USERNAME KAMU
+                Text(
+                  'ifs23015',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Kartu Bio
+          Card(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Text(
+                    'Tentang Saya',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Saya adalah seorang mahasiswa yang gemar dengan dunia otomotif, '
+                    'khususnya motor sport. Aplikasi ini dibuat sebagai tugas praktikum '
+                    'Pengembangan Aplikasi Berbasis Mobile.',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+}
